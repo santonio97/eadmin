@@ -24,5 +24,4 @@ public class DocumentoRegistro {
 		return "DocumentoRegistro [dniInteresado=" + dniInteresado + ", codigoRegistro=" + codigoRegistro + "]";
 	}
 	
-	
 }
