@@ -54,7 +54,7 @@ public class DocumentoTest {
 	}
 	
 	@Test
-	public void pruebaDeltoString() {
+	public void pruebaDetoString() {
 		assertEquals("Documento con codigo" + documento.getCodigo(),documento.toString());
 	}
 }
