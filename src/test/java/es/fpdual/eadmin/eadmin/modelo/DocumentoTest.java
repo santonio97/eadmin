@@ -52,4 +52,9 @@ public class DocumentoTest {
 		final Boolean resultado = documento.equals(new Date());
 		assertTrue(resultado);
 	}
+	
+	@Test
+	public void pruebaDeltoString() {
+		assertEquals("Documento con codigo" + documento.getCodigo(),documento.toString());
+	}
 }
