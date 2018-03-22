@@ -48,9 +48,7 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 		return documento.getCodigo().equals(codigo);
 	}
 
-	@Override
-	public void eliminarDocumento(Documento documento) {
-		
-		
-	}
+
+
+	
 }

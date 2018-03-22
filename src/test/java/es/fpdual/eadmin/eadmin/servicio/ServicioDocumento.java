@@ -9,5 +9,4 @@ public interface ServicioDocumento {
 	Documento modificarDocumento(Documento documento);
 
 	void eliminarDocumento(Documento documento);
-	
 }

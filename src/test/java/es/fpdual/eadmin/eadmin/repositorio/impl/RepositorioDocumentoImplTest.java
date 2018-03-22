@@ -36,9 +36,5 @@ public class RepositorioDocumentoImplTest {
 		assertTrue(this.repositorioDocumento.getDocumentos().isEmpty());
 	}
 
-	@Test
-	public void deberiaModificarUnDocumento() {
-		this.repositorioDocumento.modificarDocumento(DOCUMENTO_1);
-		
-	}
+	
 }

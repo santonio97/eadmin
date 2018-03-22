@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
-import es.fpdual.eadmin.eadmin.modelo.EstadoDocumento;
+//soy terriblemente gay joder. Veo a MC y me da miedo hacerle cosas guarras porque en realidad soy super gayy
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
 
@@ -16,7 +16,7 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 	RepositorioDocumento repositorioDocumento;
 
 	@Autowired
-	public ServicioDocumentoImpl(RepositorioDocumento repositorioDocumento) {
+	public ServicioDocumentoImpl (RepositorioDocumento repositorioDocumento) {
 		this.repositorioDocumento = repositorioDocumento;
 	}
 
@@ -30,7 +30,7 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 
 		final Documento documentoModificado = obtenerDocumentoConFechaCorrecta(documento);
 
-		repositorioDocumento.modificarDocumento(documentoModificado);
+		this.repositorioDocumento.modificarDocumento(documentoModificado);
 
 		return documentoModificado;
 	}
@@ -48,6 +48,6 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 
 	@Override
 	public void eliminarDocumento(Documento documento) {
-		repositorioDocumento.eliminarDocumento(documento);
+		repositorioDocumento.eliminarDocumento(1);
 	}
 }

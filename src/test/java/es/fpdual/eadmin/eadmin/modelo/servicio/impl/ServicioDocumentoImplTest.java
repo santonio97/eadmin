@@ -1,7 +1,6 @@
 package es.fpdual.eadmin.eadmin.modelo.servicio.impl;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.*;
 
 import java.util.Date;
@@ -31,23 +30,26 @@ public class ServicioDocumentoImplTest {
 		this.servicioDocumento.altaDocumento(DOCUMENTO);
 		
 		verify(this.repositorioDocumento).altaDocumento(DOCUMENTO);
-		
-	}
-	
-	@Test
-	public void deberiaModificarDocumento() {
-		when(DOCUMENTO.getNombre()).thenReturn("nombre");
+
 		when(DOCUMENTO.getCodigo()).thenReturn(1);
+		when(DOCUMENTO.getNombre()).thenReturn("nombre");
 		when(DOCUMENTO.getFechaCreacion()).thenReturn(new Date(23/03/2018));
-		
+
 		final Documento resultado = this.servicioDocumento.modificarDocumento(DOCUMENTO);
-		
-		verify(this.repositorioDocumento).modificarDocumento(DOCUMENTO);
+
+		verify(this.repositorioDocumento).modificarDocumento(any());
 		assertEquals(Integer.valueOf(1), resultado.getCodigo());
 		assertEquals(resultado.getNombre(), DOCUMENTO.getNombre());
-		assertEquals(resultado.getFechaCreacion(), DOCUMENTO.getFechaCreacion());
+		assertEquals(new Date(23/03/2018), DOCUMENTO.getFechaCreacion());
 	}
-	
+
+	@Test
+	public void deberiaModificarDocumento() {
+		this.servicioDocumento.altaDocumento(DOCUMENTO);
+		
+		verify(this.repositorioDocumento).altaDocumento(DOCUMENTO);
+	}
+
 	@Test
 	public void deberiaEliminarDocumento() {
 		
@@ -55,6 +57,6 @@ public class ServicioDocumentoImplTest {
 		
 		this.servicioDocumento.eliminarDocumento(DOCUMENTO);
 		
-		verify(this.repositorioDocumento).eliminarDocumento(DOCUMENTO);
+		verify(this.repositorioDocumento).eliminarDocumento(1);
 	}
 }
