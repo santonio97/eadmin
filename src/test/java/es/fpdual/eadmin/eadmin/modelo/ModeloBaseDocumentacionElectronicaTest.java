@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ModeloBaseDocumentacionElectronicaTest {
-	private static final Date fechaCreacion = new Date();
 	private static final String nombreDocumento = "nombre";
 	private static final boolean documentoPublico = true;
 	private static final Integer codigoDocumento = 1;

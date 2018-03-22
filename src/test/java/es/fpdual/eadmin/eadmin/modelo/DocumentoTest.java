@@ -22,7 +22,7 @@ public class DocumentoTest {
 	
 	@Test
 	public void deberiaComprobarGetters() {
-		final Date fechaCreacion = new Date();
+		new Date();
 		final Documento documento = new Documento(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO, EstadoDocumento.ACTIVO);
 		
 		assertEquals(Integer.valueOf(CODIGO_DOCUMENTO), documento.getCodigo());

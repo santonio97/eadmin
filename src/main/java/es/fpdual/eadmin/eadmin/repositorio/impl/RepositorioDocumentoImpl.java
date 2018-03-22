@@ -47,4 +47,10 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 	protected boolean tieneIgualCodigo(Documento documento, Integer codigo) {
 		return documento.getCodigo().equals(codigo);
 	}
+
+	@Override
+	public void eliminarDocumento(Documento documento) {
+		
+		
+	}
 }
