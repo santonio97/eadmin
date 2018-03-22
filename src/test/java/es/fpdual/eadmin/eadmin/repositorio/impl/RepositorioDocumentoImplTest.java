@@ -15,6 +15,7 @@ public class RepositorioDocumentoImplTest {
 	
 	private RepositorioDocumentoImpl repositorioDocumento;
 	private static final Documento DOCUMENTO = new Documento(1, "nombre", new Date(), true, EstadoDocumento.ACTIVO); 
+	private static final Documento DOCUMENTO_1 = new Documento(null, null, null, null, null);
 	
 	@Before
 	public void iniciarTest() {
@@ -37,7 +38,7 @@ public class RepositorioDocumentoImplTest {
 	
 	@Test
 	public void deberiaModificarUnDocumento() {
-		this.repositorioDocumento.modificarDocumento(DOCUMENTO);
+		this.repositorioDocumento.modificarDocumento(DOCUMENTO_1);
 		
 	}
 }
