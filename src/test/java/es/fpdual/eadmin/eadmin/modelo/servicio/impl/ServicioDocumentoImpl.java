@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
+import es.fpdual.eadmin.eadmin.modelo.builder.DocumentoBuilder;
 //soy terriblemente gay joder. Veo a MC y me da miedo hacerle cosas guarras porque en realidad soy super gayy
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
@@ -29,17 +30,16 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 	public Documento modificarDocumento(Documento documento) {
 
 		final Documento documentoModificado = obtenerDocumentoConFechaCorrecta(documento);
-
 		this.repositorioDocumento.modificarDocumento(documentoModificado);
-
 		return documentoModificado;
 	}
 
 	protected Documento obtenerDocumentoConFechaCorrecta(Documento documento1) {
-		return new Documento(documento1.getCodigo(), documento1.getNombre(),
-				dameFechaActual(), documento1.getPublico(), documento1.getEstado());
-	}
+//		return new Documento(documento1.getCodigo(), documento1.getNombre(),
+//				dameFechaActual(), documento1.getPublico(), documento1.getEstado());
 
+		return new DocumentoBuilder().clonar(documento1).conFechaCreacion(dameFechaActual()).construir();
+	}
 
 	protected Date dameFechaActual() {
 		
