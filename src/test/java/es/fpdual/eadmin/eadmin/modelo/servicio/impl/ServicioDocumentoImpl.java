@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.builder.DocumentoBuilder;
-//soy terriblemente gay joder. Veo a MC y me da miedo hacerle cosas guarras porque en realidad soy super gayy
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
 

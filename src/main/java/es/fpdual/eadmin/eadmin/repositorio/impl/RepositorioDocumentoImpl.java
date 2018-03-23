@@ -2,7 +2,6 @@ package es.fpdual.eadmin.eadmin.repositorio.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import es.fpdual.eadmin.eadmin.modelo.Documento;

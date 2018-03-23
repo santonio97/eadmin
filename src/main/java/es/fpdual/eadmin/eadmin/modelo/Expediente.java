@@ -9,33 +9,36 @@ public class Expediente extends ModeloBaseDocumentacionElectronica {
 
 	private List<Documento> documentos;
 
-	public Expediente(Integer codigo, String nombre, Date fechaArchivado, Boolean publico,
-			EstadoExpediente estado) {
+	public Expediente(Integer codigo, String nombre, Date fechaArchivado, Boolean publico, EstadoExpediente estado) {
 		super(codigo, nombre, fechaArchivado, publico);
 		this.fechaArchivado = fechaArchivado;
 		this.estado = estado;
 	}
-	
+
 	@Override
 	public Integer getCodigo() {
 		return codigo;
 	}
+
 	@Override
 	public String getNombre() {
 		return nombre;
 	}
+
 	@Override
 	public Date getFechaCreacion() {
 		return fechaCreacion;
 	}
-	
+
 	public Date getFechaArchivado() {
 		return fechaArchivado;
 	}
+
 	@Override
 	public Boolean getPublico() {
 		return publico;
 	}
+
 	public EstadoExpediente getEstado() {
 		return estado;
 	}
@@ -56,8 +59,12 @@ public class Expediente extends ModeloBaseDocumentacionElectronica {
 	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof Expediente) {
-			final Expediente expediente = (Expediente) obj;
-			return expediente.codigo.equals(this.codigo);
+			return codigo.equals(((Expediente)obj).getCodigo())
+					&& nombre.equals(((Expediente)obj).getNombre())
+					&& fechaCreacion.equals(((Expediente)obj).getFechaCreacion())
+					&& fechaArchivado.equals(((Expediente)obj).getFechaArchivado())
+					&& publico.equals(((Expediente)obj).getPublico())
+					&& estado.equals(((Expediente)obj).getEstado());
 		}
 		return false;
 	}

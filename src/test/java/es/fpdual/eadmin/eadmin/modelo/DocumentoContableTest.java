@@ -9,4 +9,6 @@ public class DocumentoContableTest {
 	private static final Integer CODIGO_DOCUMENTO = 1;
 	
 	private Documento documento2;
+	
+	
 }
