@@ -41,13 +41,13 @@ public class ModeloBaseDocumentacionElectronicaTest {
 		
 		@Test
 		public void deberiaDevolverTrueSiTienenIgualCodigo() {
-			final Documento documento2 = new Documento(codigoDocumento, null, null, null, null);	
+			final Documento documento2 = new Documento(codigoDocumento, null, null, null, null, null);	
 			assertEquals(true,ModeloBaseDocumentacionElectronica.equals(documento2));
 		}
 		
 		@Test
 		public void deberiaDevolverFalseSiNoTienenIgualCodigo() {
-			final Documento documento2 = new Documento(5, null, null, null, null);
+			final Documento documento2 = new Documento(5, null, null, null, null, null);
 			final Boolean resultado = documento2.equals(ModeloBaseDocumentacionElectronica);
 			
 			assertTrue(resultado);

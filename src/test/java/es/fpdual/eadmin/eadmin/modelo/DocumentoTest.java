@@ -9,6 +9,7 @@ import java.util.*;
 
 public class DocumentoTest {
 	private static final Date FECHA_CREACION = new Date();
+	private static final Date FECHA_ULT_MODIFICACION = new Date();
 	private static final String NOMBRE_DOCUMENTO = "nombre";
 	private static final boolean DOCUMENTO_PUBLICO = true;
 	private static final Integer CODIGO_DOCUMENTO = 1;
@@ -17,13 +18,13 @@ public class DocumentoTest {
 	
 	@Before
 	public void iniciarCadaTest() {
-		documento = new Documento(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO, EstadoDocumento.ACTIVO);
+		documento = new Documento(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO, EstadoDocumento.ACTIVO, FECHA_ULT_MODIFICACION);
 	}
 	
 	@Test
 	public void deberiaComprobarGetters() {
 		new Date();
-		final Documento documento = new Documento(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO, EstadoDocumento.ACTIVO);
+		final Documento documento = new Documento(CODIGO_DOCUMENTO, NOMBRE_DOCUMENTO, FECHA_CREACION, DOCUMENTO_PUBLICO, EstadoDocumento.ACTIVO, FECHA_ULT_MODIFICACION);
 		
 		assertEquals(Integer.valueOf(CODIGO_DOCUMENTO), documento.getCodigo());
 		assertEquals(NOMBRE_DOCUMENTO, documento.getNombre());
@@ -34,13 +35,13 @@ public class DocumentoTest {
 	
 	@Test
 	public void deberiaDevolverTrueSiTienenIgualCodigo() {
-		final Documento documento2 = new Documento(CODIGO_DOCUMENTO, null, null, null, null);	
+		final Documento documento2 = new Documento(CODIGO_DOCUMENTO, null, null, null, null, null);	
 		assertEquals(true,documento.equals(documento2));
 	}
 	
 	@Test
 	public void deberiaDevolverFalseSiNoTienenIgualCodigo() {
-		final Documento documento2 = new Documento(5, null, null, null, null);
+		final Documento documento2 = new Documento(5, null, null, null, null, null);
 		final Boolean resultado = documento2.equals(documento);
 		
 		assertTrue(resultado);

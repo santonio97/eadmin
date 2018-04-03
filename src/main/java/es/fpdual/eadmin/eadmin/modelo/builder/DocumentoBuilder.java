@@ -14,7 +14,7 @@ public class DocumentoBuilder {
 	protected Date fechaUltimaModificacion;
 	
 	public Documento construir() {
-		return new Documento(codigo, nombre, fechaCreacion, publico, estado);
+		return new Documento(codigo, nombre, fechaCreacion, publico, estado, fechaUltimaModificacion);
 	}
 
 	public DocumentoBuilder conCodigo(Integer codigo) {
