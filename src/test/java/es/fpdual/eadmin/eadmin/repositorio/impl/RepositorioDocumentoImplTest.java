@@ -15,8 +15,7 @@ public class RepositorioDocumentoImplTest {
 
 	private RepositorioDocumentoImpl repositorioDocumento;
 	private static final Documento DOCUMENTO = new Documento(1, "nombre", new Date(), true, EstadoDocumento.ACTIVO);
-	private static final Documento DOCUMENTO_1 = new Documento(null, null, null, null, null);
-
+	
 	@Before
 	public void iniciarTest() {
 		this.repositorioDocumento = new RepositorioDocumentoImpl();
@@ -31,10 +30,17 @@ public class RepositorioDocumentoImplTest {
 
 	@Test
 	public void deberiaComprobarUnDocumentoNull() {
-		// this.repositorioDocumento.getDocumentos().add(DOCUMENTO);
 		this.repositorioDocumento.eliminarDocumento(DOCUMENTO.getCodigo());
 		assertTrue(this.repositorioDocumento.getDocumentos().isEmpty());
 	}
 
+	@Test
+	public void deberiaObtenerDocumentoPorCodigo() {
+		this.repositorioDocumento.getDocumentos().add(DOCUMENTO);
+		Documento resultado = this.repositorioDocumento.obtenerDocumentoPorCodigo(DOCUMENTO.getCodigo());
+		
+		assertTrue(this.repositorioDocumento.getDocumentos().isEmpty());
+		
+	}
 	
 }

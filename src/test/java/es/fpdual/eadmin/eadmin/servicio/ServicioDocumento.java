@@ -1,12 +1,18 @@
 package es.fpdual.eadmin.eadmin.servicio;
 
+import java.util.List;
+
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 
 public interface ServicioDocumento {
 
-	void altaDocumento(Documento documento);
+	Documento altaDocumento(Documento documento);
 
 	Documento modificarDocumento(Documento documento);
 
 	void eliminarDocumento(Documento documento);
+	
+	public abstract Documento obtenerDocumentoPorCodigo(Integer codigo);
+	
+	public abstract List<Documento> obtenerTodosLosDocumentos();
 }

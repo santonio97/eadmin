@@ -8,6 +8,7 @@ public abstract class ModeloBaseDocumentacionElectronica {
 	protected String nombre;
 	protected Date fechaCreacion;
 	protected Boolean publico;
+	protected Date fechaUltimaModificacion;
 	
 	public ModeloBaseDocumentacionElectronica(Integer codigo, String nombre, Date fechaCreacion, Boolean publico) {
 		super();
@@ -31,6 +32,10 @@ public abstract class ModeloBaseDocumentacionElectronica {
 
 	public Boolean getPublico() {
 		return publico;
+	}
+	
+	public Date getFechaUltimaModificacion() {
+		return fechaUltimaModificacion;
 	}
 	
 	@Override

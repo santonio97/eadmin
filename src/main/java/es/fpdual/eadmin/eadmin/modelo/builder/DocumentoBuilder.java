@@ -11,7 +11,8 @@ public class DocumentoBuilder {
 	protected Date fechaCreacion;
 	protected Boolean publico;
 	protected EstadoDocumento estado;
-
+	protected Date fechaUltimaModificacion;
+	
 	public Documento construir() {
 		return new Documento(codigo, nombre, fechaCreacion, publico, estado);
 	}
@@ -38,6 +39,11 @@ public class DocumentoBuilder {
 
 	public DocumentoBuilder conEstado(EstadoDocumento estadoDocumento) {
 		this.estado = estadoDocumento;
+		return this;
+	}
+	
+	public DocumentoBuilder conFechaUltimaModificacion(Date fechaUltimaModificacion) {
+		this.fechaUltimaModificacion = fechaUltimaModificacion;
 		return this;
 	}
 

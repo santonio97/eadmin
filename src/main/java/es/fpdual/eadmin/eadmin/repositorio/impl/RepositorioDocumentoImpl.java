@@ -4,13 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Repository;
+
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
+@Repository
 public class RepositorioDocumentoImpl implements RepositorioDocumento {
-
+	
 	private List<Documento> documentos = new ArrayList<>();
-
+	
 	public List<Documento> getDocumentos() {
 		return documentos;
 	}
@@ -27,7 +30,7 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 	@Override
 	public void modificarDocumento(Documento documento) {
 		if (!documentos.contains(documento)) {
-			throw new IllegalArgumentException("El documento a modificar no existe");
+			throw new IllegalArgumentException("El documento para modificar no existe");
 		}
 
 		documentos.set(documentos.indexOf(documento), documento);
@@ -43,11 +46,24 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 		}
 	}
 
+	
+	@Override
+	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
+		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo)).findFirst();
+		
+		if (documentoEncontrado.isPresent()) {
+			return documentoEncontrado.get();
+		}
+		return null;
+	}
+
+	@Override //lista
+	public List<Documento> obtenerTodosLosDocumentos() {
+		
+		return /*repositorioDocumento.obtenerTodosLosDocumentos()*/ null;
+	}
+	
 	protected boolean tieneIgualCodigo(Documento documento, Integer codigo) {
 		return documento.getCodigo().equals(codigo);
 	}
-
-
-
-	
 }
