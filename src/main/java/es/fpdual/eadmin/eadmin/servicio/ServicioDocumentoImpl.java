@@ -1,4 +1,4 @@
-package es.fpdual.eadmin.eadmin.modelo.servicio.impl;
+package es.fpdual.eadmin.eadmin.servicio;
 
 import java.util.Date;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static org.mockito.Mockito.*;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.builder.DocumentoBuilder;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
@@ -18,8 +17,6 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 	private final RepositorioDocumento repositorioDocumento;
 
 	ServicioDocumentoImpl servicioDocumento;
-	
-	private static final Documento DOCUMENTO = mock(Documento.class);
 	
 	@Autowired
 	public ServicioDocumentoImpl (RepositorioDocumento repositorioDocumento) {
@@ -46,7 +43,7 @@ public class ServicioDocumentoImpl implements ServicioDocumento {
 		return documentoModificado;
 	}
 
-	protected Documento obtenerDocumentoConFechaCorrecta(Documento documento1) {
+	public Documento obtenerDocumentoConFechaCorrecta(Documento documento1) {
 
 		return new DocumentoBuilder().clonar(documento1).conFechaCreacion(dameFechaActual()).construir();
 	}

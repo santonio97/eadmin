@@ -45,7 +45,7 @@ public abstract class ModeloBaseDocumentacionElectronica {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Integer) {
+		if (obj instanceof Documento) {
 			return codigo.equals(((Documento) obj).getCodigo());
 		}
 		return true;

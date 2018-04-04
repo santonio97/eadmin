@@ -1,4 +1,4 @@
-package es.fpdual.eadmin.eadmin.modelo.servicio.impl;
+package es.fpdual.eadmin.eadmin.servicio.impl;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 import es.fpdual.eadmin.eadmin.servicio.ServicioDocumento;
+import es.fpdual.eadmin.eadmin.servicio.ServicioDocumentoImpl;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.modelo.EstadoDocumento;
 

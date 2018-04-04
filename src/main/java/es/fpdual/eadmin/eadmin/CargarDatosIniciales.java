@@ -18,12 +18,12 @@ public class CargarDatosIniciales implements ApplicationRunner {
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		this.repositorioDocumento.altaDocumento(new Documento(1, "documento1", FECHA, null, EstadoDocumento.ACTIVO, FECHA));
-		System.out.println("Documento1 introducido");
-		this.repositorioDocumento.altaDocumento(new Documento(2, "documento2", FECHA, null, EstadoDocumento.ACTIVO, FECHA));
-		System.out.println("Documento2 introducido");
-		this.repositorioDocumento.altaDocumento(new Documento(3, "documento3", FECHA, null, EstadoDocumento.ACTIVO, FECHA));
-		System.out.println("Documento3 introducido");
+		this.repositorioDocumento.altaDocumento(new Documento(5, "documento5", FECHA, null, EstadoDocumento.APROBADO, FECHA));
+		
+		this.repositorioDocumento.altaDocumento(new Documento(6, "documento6", FECHA, null, EstadoDocumento.ELIMINADO, FECHA));
+		
+		this.repositorioDocumento.altaDocumento(new Documento(7, "documento7", FECHA, null, EstadoDocumento.ACTIVO, FECHA));
+		
 	}
 	
 	private static final Date FECHA = new Date();
