@@ -4,16 +4,19 @@ import java.util.Date;
 
 public class Documento extends ModeloBaseDocumentacionElectronica {
 	
-	private EstadoDocumento estado;
+	private final EstadoDocumento estado;
 
-	public Documento(Integer codigo, String nombre, Date fechaCreacion, Boolean publico, EstadoDocumento estado, Date fechaUltimaModificacion) {
+	public Documento(Integer codigo, String nombre, Date fechaCreacion,
+			Boolean publico, EstadoDocumento estado, Date fechaUltimaModificacion) {
 		super(codigo, nombre, fechaCreacion, publico);
 		this.estado = estado;
 	}
 
 	public EstadoDocumento getEstado() {
-		return estado;
+		return this.estado;
 	}
-
-
+	
+	public Date getFechaUltimaModificacion() {
+		return fechaUltimaModificacion;
+	}
 }

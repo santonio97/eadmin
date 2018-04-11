@@ -25,15 +25,9 @@ public class CargarDatosIniciales implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		this.repositorioDocumento.altaDocumento(new Documento(1, "documento1", FECHA, true, EstadoDocumento.APROBADO, FECHA));
-		
-		this.repositorioDocumento.altaDocumento(new Documento(2, "documento2", FECHA, true, EstadoDocumento.ELIMINADO, FECHA));
-		
-		this.repositorioDocumento.altaDocumento(new Documento(3, "documento3", FECHA, true, EstadoDocumento.ACTIVO, FECHA));
-		
+		this.repositorioDocumento.altaDocumento(new Documento(1, "documento 1", FECHA, true, EstadoDocumento.APROBADO, FECHA));
+		this.repositorioDocumento.altaDocumento(new Documento(2, "documento 2", FECHA, true, EstadoDocumento.ELIMINADO, FECHA));
+		this.repositorioDocumento.altaDocumento(new Documento(3, "documento 3", FECHA, true, EstadoDocumento.ACTIVO, FECHA));
 	}
-	
-	
-	
-	
+		
 }

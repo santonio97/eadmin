@@ -16,10 +16,13 @@ import java.util.TreeMap;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Repository;
@@ -41,9 +44,9 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 		if (documentos.contains(documento)) {
 			throw new IllegalArgumentException("El documento ya existe");
 		}
-		
+
 		exportExcel("Alta", documento, "Documento.xls");
-		
+
 		documentos.add(documento);
 		System.out.println(" El " + documento.getNombre() + " ha sido introducido");
 	}
@@ -218,9 +221,8 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
 			Sheet sheet = workbook.getSheetAt(numeroHoja);
 
-			Object[] bookData = { documento.getCodigo(), documento.getNombre(),
-					documento.getFechaCreacion().toString(), documento.getEstado().toString() 
-					};
+			Object[] bookData = { documento.getCodigo(), documento.getNombre(), documento.getFechaCreacion().toString(),
+					documento.getEstado().toString() };
 
 			int rowCount = sheet.getLastRowNum();
 			Row row = sheet.createRow(++rowCount);
@@ -228,8 +230,14 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
 			Cell cell = row.createCell(columnCount);
 			cell.setCellValue(rowCount);
-
+			
+			XSSFCellStyle style = (XSSFCellStyle) workbook.createCellStyle();
+			style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+			
+			
 			for (Object field : bookData) {
+				row.getCell(0).setCellStyle(style);
 				cell = row.createCell(++columnCount);
 				if (field instanceof String) {
 					cell.setCellValue((String) field);
@@ -238,14 +246,18 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 				}
 			}
 
+
 			inputStream.close();
 			FileOutputStream outputStream = new FileOutputStream(fileName);
 			workbook.write(outputStream);
-			//workbook.close();
+			// workbook.close();
 			outputStream.close();
 
 		} catch (IOException | EncryptedDocumentException | InvalidFormatException ex) {
 			ex.printStackTrace();
 		}
 	}
-	}
+	
+	
+	
+}
