@@ -7,12 +7,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeMap;
-
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -230,12 +227,11 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
 			Cell cell = row.createCell(columnCount);
 			cell.setCellValue(rowCount);
-			
+
 			XSSFCellStyle style = (XSSFCellStyle) workbook.createCellStyle();
 			style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
 			style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-			
-			
+
 			for (Object field : bookData) {
 				row.getCell(0).setCellStyle(style);
 				cell = row.createCell(++columnCount);
@@ -246,18 +242,14 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 				}
 			}
 
-
 			inputStream.close();
 			FileOutputStream outputStream = new FileOutputStream(fileName);
 			workbook.write(outputStream);
-			// workbook.close();
+			//workbook.close();
 			outputStream.close();
 
 		} catch (IOException | EncryptedDocumentException | InvalidFormatException ex) {
 			ex.printStackTrace();
 		}
-	}
-	
-	
-	
+	}	
 }

@@ -10,12 +10,14 @@ public abstract class ModeloBaseDocumentacionElectronica {
 	protected Boolean publico;
 	protected Date fechaUltimaModificacion;
 	
-	public ModeloBaseDocumentacionElectronica(Integer codigo, String nombre, Date fechaCreacion, Boolean publico) {
+	public ModeloBaseDocumentacionElectronica(Integer codigo, String nombre,
+			Date fechaCreacion, Boolean publico, Date fechaUltimaModificacion) {
 		super();
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.fechaCreacion = fechaCreacion;
 		this.publico = publico;
+		this.fechaUltimaModificacion = fechaUltimaModificacion;
 	}
 	
 	public Integer getCodigo() {

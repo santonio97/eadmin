@@ -8,15 +8,12 @@ public class Documento extends ModeloBaseDocumentacionElectronica {
 
 	public Documento(Integer codigo, String nombre, Date fechaCreacion,
 			Boolean publico, EstadoDocumento estado, Date fechaUltimaModificacion) {
-		super(codigo, nombre, fechaCreacion, publico);
+		super(codigo, nombre, fechaCreacion, publico, fechaUltimaModificacion);
 		this.estado = estado;
 	}
 
 	public EstadoDocumento getEstado() {
 		return this.estado;
 	}
-	
-	public Date getFechaUltimaModificacion() {
-		return fechaUltimaModificacion;
-	}
+
 }

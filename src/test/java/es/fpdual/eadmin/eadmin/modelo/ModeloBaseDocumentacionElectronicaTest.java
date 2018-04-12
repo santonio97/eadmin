@@ -13,25 +13,25 @@ public class ModeloBaseDocumentacionElectronicaTest {
 	private static final boolean documentoPublico = true;
 	private static final Integer codigoDocumento = 1;
 	
-	ModeloBaseDocumentacionElectronicaFake ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(2, "nombre", new Date(), true);
+	ModeloBaseDocumentacionElectronicaFake ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(2, "nombre", new Date(), true, new Date());
 
 	class ModeloBaseDocumentacionElectronicaFake extends ModeloBaseDocumentacionElectronica {
 
 		public ModeloBaseDocumentacionElectronicaFake(Integer codigo, String nombre, Date fechaCreacion,
-				Boolean publico) {
-			super(codigo, nombre, fechaCreacion, publico);
+				Boolean publico, Date fechaUltimaModificacion) {
+			super(codigo, nombre, fechaCreacion, publico, fechaUltimaModificacion);
 
 		}
 
 		@Before
 		public void iniciarCadaTest() {
-			ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico);
+			ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico, fechaCreacion);
 		}
 		
 		@Test
 		public void deberiaComprobarGetters() {
 			final Date fechaCreacion = new Date();
-			final ModeloBaseDocumentacionElectronica documento = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico);
+			final ModeloBaseDocumentacionElectronica documento = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico, fechaUltimaModificacion);
 			
 			assertEquals(Integer.valueOf(codigoDocumento), documento.getCodigo());
 			assertEquals(nombreDocumento, documento.getNombre());

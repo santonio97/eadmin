@@ -12,9 +12,10 @@ public class ExpedienteBuilder {
 	protected Integer codigo;
 	protected String nombre;
 	protected Boolean publico;
+	protected Date fechaUltimaModificacion;
 	
 	public Expediente construir() {
-		return new Expediente(codigo, nombre, fechaArchivado, publico, estado);
+		return new Expediente(codigo, nombre, fechaArchivado, publico, estado, fechaUltimaModificacion);
 	}
 	
 	public ExpedienteBuilder conCodigo(Integer codigo) {
