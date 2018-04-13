@@ -8,10 +8,14 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ModeloBaseDocumentacionElectronicaTest {
+import es.fpdual.eadmin.eadmin.util.AbstractoModeloBeanTest;
+
+public class ModeloBaseDocumentacionElectronicaTest extends AbstractoModeloBeanTest<ModeloBaseDocumentacionElectronica>  {
 	private static final String nombreDocumento = "nombre";
 	private static final boolean documentoPublico = true;
 	private static final Integer codigoDocumento = 1;
+	private static final Date fechaCreacion = new Date();
+	private static final Date fechaUltimaModificacion = new Date();
 	
 	ModeloBaseDocumentacionElectronicaFake ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(2, "nombre", new Date(), true, new Date());
 
@@ -22,41 +26,37 @@ public class ModeloBaseDocumentacionElectronicaTest {
 			super(codigo, nombre, fechaCreacion, publico, fechaUltimaModificacion);
 
 		}
+	}
 
 		@Before
 		public void iniciarCadaTest() {
-			ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico, fechaCreacion);
+			ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico, fechaUltimaModificacion);
 		}
 		
-		@Test
-		public void deberiaComprobarGetters() {
-			final Date fechaCreacion = new Date();
-			final ModeloBaseDocumentacionElectronica documento = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento, nombreDocumento, fechaCreacion, documentoPublico, fechaUltimaModificacion);
-			
-			assertEquals(Integer.valueOf(codigoDocumento), documento.getCodigo());
-			assertEquals(nombreDocumento, documento.getNombre());
-			assertEquals(fechaCreacion, documento.getFechaCreacion());
-			assertEquals(documentoPublico, documento.getPublico());
+		@Override
+		public void before() {
+			this.entityA1 = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento,
+					nombreDocumento, fechaCreacion, documentoPublico, fechaUltimaModificacion);
+			this.entityA2 = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento,
+					nombreDocumento, fechaCreacion, documentoPublico, fechaUltimaModificacion);
+			this.entityB = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento,
+					nombreDocumento, fechaCreacion, documentoPublico, null);
 		}
-		
-		@Test
-		public void deberiaDevolverTrueSiTienenIgualCodigo() {
-			final Documento documento2 = new Documento(codigoDocumento, null, null, null, null, null);	
-			assertEquals(true,ModeloBaseDocumentacionElectronica.equals(documento2));
+
+		@Override
+		public void deberiaInvocarLosMetodosGetModelo() {
+			assertEquals(Integer.valueOf(codigoDocumento), this.entityA1.getCodigo());
+			assertEquals(nombreDocumento, this.entityA1.getNombre());
+			assertEquals(fechaCreacion, this.entityA1.getFechaCreacion());
+			assertEquals(documentoPublico, this.entityA1.getPublico());
+			assertEquals(fechaUltimaModificacion, this.entityA1.getFechaUltimaModificacion());
+
 		}
-		
-		@Test
-		public void deberiaDevolverFalseSiNoTienenIgualCodigo() {
-			final Documento documento2 = new Documento(5, null, null, null, null, null);
-			final Boolean resultado = documento2.equals(ModeloBaseDocumentacionElectronica);
-			
-			assertTrue(resultado);
-		}
-		
-		@Test
-		public void deberiaDevolverFalseSiNoEsUnDocumento() {
-			final Boolean resultado = ModeloBaseDocumentacionElectronica.equals(new Date());
-			assertTrue(resultado);
+
+		@Before
+		public void inicializarCadaTest() {
+			ModeloBaseDocumentacionElectronica = new ModeloBaseDocumentacionElectronicaFake(codigoDocumento,
+					nombreDocumento, fechaCreacion, documentoPublico, fechaUltimaModificacion);
 		}
 		
 		@Test
@@ -64,4 +64,3 @@ public class ModeloBaseDocumentacionElectronicaTest {
 			assertEquals("Documento con codigo" + ModeloBaseDocumentacionElectronica.getCodigo(),ModeloBaseDocumentacionElectronica.toString());
 		}
 	}
-}

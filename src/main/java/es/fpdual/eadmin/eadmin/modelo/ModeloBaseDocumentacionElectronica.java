@@ -2,6 +2,10 @@ package es.fpdual.eadmin.eadmin.modelo;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public abstract class ModeloBaseDocumentacionElectronica {
 	
 	protected Integer codigo;
@@ -9,7 +13,7 @@ public abstract class ModeloBaseDocumentacionElectronica {
 	protected Date fechaCreacion;
 	protected Boolean publico;
 	protected Date fechaUltimaModificacion;
-	
+
 	public ModeloBaseDocumentacionElectronica(Integer codigo, String nombre,
 			Date fechaCreacion, Boolean publico, Date fechaUltimaModificacion) {
 		super();
@@ -19,7 +23,11 @@ public abstract class ModeloBaseDocumentacionElectronica {
 		this.publico = publico;
 		this.fechaUltimaModificacion = fechaUltimaModificacion;
 	}
-	
+
+	public ModeloBaseDocumentacionElectronica() {
+		
+	}
+
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -35,26 +43,43 @@ public abstract class ModeloBaseDocumentacionElectronica {
 	public Boolean getPublico() {
 		return publico;
 	}
-	
+
 	public Date getFechaUltimaModificacion() {
 		return fechaUltimaModificacion;
 	}
 	
 	@Override
-	public int hashCode() {
-		return codigo.hashCode();
-	}
-
-	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Documento) {
-			return codigo.equals(((Documento) obj).getCodigo());
+		if (obj instanceof ModeloBaseDocumentacionElectronica) {
+			final ModeloBaseDocumentacionElectronica param = (ModeloBaseDocumentacionElectronica)obj;
+			final EqualsBuilder equalsBuilder = new EqualsBuilder();
+			
+			equalsBuilder.append(this.codigo, param.codigo);
+			equalsBuilder.append(this.nombre, param.nombre);
+			equalsBuilder.append(this.fechaCreacion, param.fechaCreacion);
+			equalsBuilder.append(this.publico, param.publico);
+			equalsBuilder.append(this.fechaUltimaModificacion, param.fechaUltimaModificacion);
+			
+			return equalsBuilder.isEquals();
 		}
-		return true;
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		final HashCodeBuilder hashCodeBuilder = new HashCodeBuilder();
+		
+		hashCodeBuilder.append(this.codigo);
+		hashCodeBuilder.append(this.nombre);
+		hashCodeBuilder.append(this.fechaCreacion);
+		hashCodeBuilder.append(this.publico);
+		hashCodeBuilder.append(this.fechaUltimaModificacion);
+		
+		return hashCodeBuilder.toHashCode();
 	}
 
 	@Override
 	public String toString() {
-		return "Documento con codigo" + codigo;
+		return ToStringBuilder.reflectionToString(this);
 	}
 }

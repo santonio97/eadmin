@@ -20,4 +20,45 @@
 			#{documento.estado.codigo}
 		);
 	</insert>
+	
+	<delete id="eliminarDocumento">
+		DELETE FROM Elemento WHERE codigo = #{documento}
+	</delete>
+	
+	<update id="actualizarDocumento">
+		UPDATE ELEMENTO
+		SET
+		codigo=#{documento.codigo},
+		nombre=#{documento.nombre},
+		fechaCreacion=#{documento.fechaCreacion},
+		fechaUltimaModificacion=#{documento.fechaUltimaModificacion},
+		esPublico=#{documento.publico},
+		tipo=1,
+		estadoDocumento=#{documento.estado.codigo}
+		
+		where codigo = #{documento.codigo}
+	</update>
+	
+	<select id="seleccionarDocumento" resultMap="documentoResultMap">
+		SELECT codigo,
+			nombre,
+			fechaCreacion,
+			fechaUltimaModificacion,
+			esPublico,
+			estadoDocumento
+		FROM Elemento
+		WHERE codigo = #{codigo}
+	</select>
+	
+	<resultMap type="es.fpdual.eadmin.eadmin.modelo.Documento" id="documentoResultMap">
+		<constructor>
+			<idArg column="codigo" javaType="int"/>
+			<arg column="nombre" javaType="String"/>
+			<arg column="fechaCreacion" javaType="Date"/>
+			<arg column="esPublico" javaType="Boolean"/>
+			<arg column="estadoDocumento" javaType="int"/>
+			<arg column="fechaUltimaModificacion" javaType="Date"/>
+		</constructor>
+	</resultMap>
+
 </mapper>
