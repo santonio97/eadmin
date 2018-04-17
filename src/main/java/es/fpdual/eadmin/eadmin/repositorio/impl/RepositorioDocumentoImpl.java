@@ -22,71 +22,54 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import es.fpdual.eadmin.eadmin.mapper.DocumentoMapper;
 import es.fpdual.eadmin.eadmin.modelo.Documento;
 import es.fpdual.eadmin.eadmin.repositorio.RepositorioDocumento;
 
 @Repository
 public class RepositorioDocumentoImpl implements RepositorioDocumento {
 
-	private List<Documento> documentos = new ArrayList<>();
-
-	public List<Documento> getDocumentos() {
-		return documentos;
+	private DocumentoMapper mapper;
+	
+	@Autowired
+	public RepositorioDocumentoImpl(DocumentoMapper mapper) {
+		this.mapper = mapper;
 	}
-
+	
 	@Override
 	public void altaDocumento(Documento documento) {
-		if (documentos.contains(documento)) {
-			throw new IllegalArgumentException("El documento ya existe");
-		}
-
-		exportExcel("Alta", documento, "Documento.xls");
-
-		documentos.add(documento);
-		System.out.println(" El " + documento.getNombre() + " ha sido introducido");
+		
+		this.mapper.insertarDocumento(documento);
 	}
 
 	@Override
 	public void modificarDocumento(Documento documento) {
-		if (!documentos.contains(documento)) {
-			throw new IllegalArgumentException("El documento para modificar no existe");
+			
+		int modificado = this.mapper.actualizarDocumento(documento);
+		if (modificado == 0) {
+			throw new IllegalArgumentException("No se puede modificar el documento porque no se encuentra.");
 		}
-
-		documentos.set(documentos.indexOf(documento), documento);
 	}
 
 	@Override
 	public void eliminarDocumento(Integer codigo) {
-
-		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
-				.findFirst();
-
-		if (documentoEncontrado.isPresent()) {
-			documentos.remove(documentoEncontrado.get());
-		}
+	
+		this.mapper.eliminarDocumento(codigo);
 	}
 
 	@Override
 	public Documento obtenerDocumentoPorCodigo(Integer codigo) {
-		Optional<Documento> documentoEncontrado = documentos.stream().filter(d -> tieneIgualCodigo(d, codigo))
-				.findFirst();
-
-		if (documentoEncontrado.isPresent()) {
-			return documentoEncontrado.get();
-		}
-		return null;
+		
+		return this.mapper.seleccionarDocumento(codigo);
 	}
 
-	@Override // lista
+	@Override
 	public List<Documento> obtenerTodosLosDocumentos() {
 
-		return /* repositorioDocumento.obtenerTodosLosDocumentos() */ null;
-	}
-
-	protected boolean tieneIgualCodigo(Documento documento, Integer codigo) {
-		return documento.getCodigo().equals(codigo);
+		return this.mapper.seleccionarTodosLosDocumentos();
 	}
 
 	public static boolean exportExcel(String nombreHoja, Map<String, Object[]> data, String fileName) {
@@ -251,5 +234,11 @@ public class RepositorioDocumentoImpl implements RepositorioDocumento {
 		} catch (IOException | EncryptedDocumentException | InvalidFormatException ex) {
 			ex.printStackTrace();
 		}
-	}	
+	}
+
+	@Override
+	public void actualizarDocumento(Documento documento) {
+		
+	}
+
 }

@@ -1,7 +1,6 @@
 package es.fpdual.eadmin.eadmin.modelo;
 
 import java.util.Date;
-import java.util.Optional;
 
 public class Documento extends ModeloBaseDocumentacionElectronica {
 
@@ -13,26 +12,25 @@ public class Documento extends ModeloBaseDocumentacionElectronica {
 		this.estado = estado;
 	}
 
-	public Documento(Integer codigo, String nombre, Date fechaCreacion,
-
-			Boolean publico, Integer estado, Date fechaUltimaModificacion) {
-		super(codigo, nombre, fechaCreacion, publico, fechaUltimaModificacion);
-
-		switch (estado) {
-		case 1:
-			this.estado = EstadoDocumento.ACTIVO;
-			break;
-		case 2:
-			this.estado = EstadoDocumento.APROBADO;
-			break;
-		case 3:
-			this.estado = EstadoDocumento.ELIMINADO;
-			break;
-		default:
-			this.estado = null;
-			break;
-		}
-	}
+//	public Documento(Integer codigo, String nombre, Date fechaCreacion,
+//			Boolean publico, Integer estado, Date fechaUltimaModificacion) {
+//		super(codigo, nombre, fechaCreacion, publico, fechaUltimaModificacion);
+//
+//		switch (estado) {
+//		case 1:
+//			this.estado = EstadoDocumento.ACTIVO;
+//			break;
+//		case 2:
+//			this.estado = EstadoDocumento.APROBADO;
+//			break;
+//		case 3:
+//			this.estado = EstadoDocumento.ELIMINADO;
+//			break;
+//		default:
+//			this.estado = null;
+//			break;
+//		}
+//	}
 
 	public EstadoDocumento getEstado() {
 		return this.estado;

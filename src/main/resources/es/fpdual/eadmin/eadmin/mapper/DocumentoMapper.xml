@@ -40,14 +40,7 @@
 	</update>
 	
 	<select id="seleccionarDocumento" resultMap="documentoResultMap">
-		SELECT codigo,
-			nombre,
-			fechaCreacion,
-			fechaUltimaModificacion,
-			esPublico,
-			estadoDocumento
-		FROM Elemento
-		WHERE codigo = #{codigo}
+		<include refid="baseSelectDocumento" /> and codigo = #{codigo}
 	</select>
 	
 	<resultMap type="es.fpdual.eadmin.eadmin.modelo.Documento" id="documentoResultMap">
@@ -56,9 +49,24 @@
 			<arg column="nombre" javaType="String"/>
 			<arg column="fechaCreacion" javaType="Date"/>
 			<arg column="esPublico" javaType="Boolean"/>
-			<arg column="estadoDocumento" javaType="int"/>
+			<arg column="estadoDocumento" javaType="es.fpdual.eadmin.eadmin.modelo.EstadoDocumento"/>
 			<arg column="fechaUltimaModificacion" javaType="Date"/>
 		</constructor>
 	</resultMap>
+	
+	<select id="seleccionarTodosLosDocumentos" resultMap="documentoResultMap">
+		<include refid="baseSelectDocumento"/>
+	</select>
+	
+	<sql id="baseSelectDocumento">
+		SELECT codigo,
+			nombre,
+			fechaCreacion,
+			fechaUltimaModificacion,
+			esPublico,
+			estadoDocumento
+		FROM Elemento
+		WHERE tipo = 1
+	</sql>
 
 </mapper>

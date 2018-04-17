@@ -67,15 +67,18 @@ public abstract class BaseDocumentoMapperTest {
 	}
 
 	@Test
-	public void deberiaSeleccionarUnDocumento() throws Exception {
+	public void deberiaRecuperarTodosLosDocumentos() throws Exception {
 		
 		final Documento documentoSeleccionado = new Documento(2, "Documento2",
 			Utilidades.asDate(LocalDate.of(2015, 2, 2)),
 				true, EstadoDocumento.ACTIVO, Utilidades.asDate(LocalDate.of(2015, 2, 2)));
 
 		this.mapper.insertarDocumento(this.documento);
-		final Documento doc = this.mapper.seleccionarDocumento(1);
+		this.mapper.insertarDocumento(documentoSeleccionado);
+		
+		final List<Documento> resultado = this.mapper.seleccionarTodosLosDocumentos();
 
-		assertThat(documentoSeleccionado, is(documentoSeleccionado));
+		assertThat(resultado, hasSize(2));
+		assertThat(resultado, hasItems(this.documento, documentoSeleccionado));
 	}
 }
