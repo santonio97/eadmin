@@ -15,13 +15,9 @@ import java.util.*;
 public class RepositorioDocumentoImplTest {
 
 	private static final Date FECHA_CREACION = new Date();
-
 	private static final Date FECHA_ULTIMA_MODIFICACION = new Date();
-
 	private static final String NOMBRE_DOCUMENTO = "nombre";
-
 	private static final boolean DOCUMENTO_PUBLICO = true;
-
 	private static final Integer CODIGO_DOCUMENTO = 1;
 
 	private RepositorioDocumentoImpl repositorioDocumento;
@@ -40,7 +36,6 @@ public class RepositorioDocumentoImplTest {
 
 	@Test
 	public void deberiaAlmacenarUnDocumento() {
-
 		this.repositorioDocumento.altaDocumento(this.documento);
 
 		verify(this.mapper).insertarDocumento(this.documento);
@@ -64,14 +59,13 @@ public class RepositorioDocumentoImplTest {
 
 	@Test
 	public void deberiaEliminarUnDocumento() {
-
 		this.repositorioDocumento.eliminarDocumento(this.documento.getCodigo());
+		
 		verify(this.mapper).eliminarDocumento(this.documento.getCodigo());
 	}
 
 	@Test
 	public void deberiaObtenerDocumentoPorCodigo() {
-
 		when(this.mapper.seleccionarDocumento(CODIGO_DOCUMENTO)).thenReturn(this.documento);
 
 		final Documento resultado = this.repositorioDocumento.obtenerDocumentoPorCodigo(CODIGO_DOCUMENTO);
@@ -81,7 +75,6 @@ public class RepositorioDocumentoImplTest {
 	
 	@Test
 	public void deberiaObtenerTodosLosDocumentos() throws Exception {
-
 		final List<Documento> todosLosDocumentos = Arrays.asList(this.documento);
 		
 		when(mapper.seleccionarTodosLosDocumentos()).thenReturn(todosLosDocumentos);
@@ -91,5 +84,21 @@ public class RepositorioDocumentoImplTest {
 		assertThat(resultado, hasSize(1));
 		assertThat(resultado, hasItems(this.documento));
 	}
+	
+	@Test
+	public void deberiaObtener1CuandoNoHayElementosACalcularElMaximoCodigo() throws Exception {
+		final int resultado = this.mapper.obtenerMaximoMas1();
+		
+		assertThat(resultado, is(0));
+	}
+	
+	@Test
+	public void deberiaDevolverElSiguienteIdentificador() throws Exception {
 
+		this.mapper.insertarDocumento(this.documento);
+	
+		final int resultado = this.mapper.obtenerMaximoMas1();
+		
+		assertThat(resultado, is(0));
+	}
 }

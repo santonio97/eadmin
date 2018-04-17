@@ -20,4 +20,6 @@ public interface DocumentoMapper {
 	List<Documento> seleccionarTodosLosDocumentos();
 
 	int modificarDocumento(@Param("documento") Documento documento);
+
+	int obtenerMaximoMas1();
 }
